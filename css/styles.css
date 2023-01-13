@@ -1,0 +1,28 @@
+.img-sizing-25 {
+  width: 56px;
+  height: 56px;
+}
+
+.entries-margin {
+  margin: 0 16px;
+}
+
+.entry-background {
+  background-color: #0f1721;
+}
+
+.header-background {
+  background-color: #f64e4f;
+}
+
+.anchor-entries {
+  text-decoration: none;
+}
+
+.header-text-color {
+  color: #0f1721;
+}
+
+.nav-bar-margin {
+  margin: 16px 0 0;
+}
