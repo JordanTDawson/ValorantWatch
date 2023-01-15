@@ -1,6 +1,11 @@
-.img-sizing-25 {
-  width: 56px;
-  height: 56px;
+img {
+  display: block;
+  width: 100%;
+}
+
+.nav-bar-logo {
+  width: 60px;
+  height: 61px;
 }
 
 .entries-margin {
@@ -25,4 +30,25 @@
 
 .nav-bar-margin {
   margin: 16px 0 0;
+}
+
+.content-margin {
+  margin: 14px 0 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.container-background {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.agents-list-margin {
+  margin-left: 12px;
 }

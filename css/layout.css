@@ -3,8 +3,16 @@
   margin: 0 auto;
 }
 
+.agent-container {
+  max-width: 992px;
+  margin: 20px auto 0;
+}
+
 .row {
   display: flex;
+}
+
+.wrap {
   flex-wrap: wrap;
 }
 
@@ -12,7 +20,15 @@
   width: 100%;
 }
 
-@media only screen and (min-width: 576px) {
+.column-half {
+  width: 50%;
+}
+
+.col-two-thirds {
+  flex-basis: calc(100% / (2 / 3));
+}
+
+@media only screen and (min-width: 768px) {
   .column-half {
     width: 50%;
   }
