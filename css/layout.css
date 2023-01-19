@@ -12,6 +12,11 @@
   margin: 20px auto 0;
 }
 
+.maps-container {
+  max-width: 1400px;
+  margin: 20px auto 0;
+}
+
 .row {
   display: flex;
 }

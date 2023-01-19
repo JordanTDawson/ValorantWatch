@@ -195,3 +195,29 @@ function renderAgentDetails(agentData) {
 
   return divAgentsList;
 }
+
+function viewSwap(viewName) {
+  var divMapsList = document.querySelector('.maps-list');
+  if (viewName === 'maps-list') {
+    divAgentsList.classList.add('hidden');
+    divMapsList.classList.remove('hidden');
+    data.view = viewName;
+  }
+  if (viewName === 'agents-list') {
+    divAgentsList.classList.remove('hidden');
+    divMapsList.classList.add('hidden');
+    data.view = viewName;
+  }
+}
+
+var agentsAnchor = document.querySelector('#agents-nav-bar');
+agentsAnchor.addEventListener('click', handleAgentsAnchorClick);
+function handleAgentsAnchorClick(event) {
+  viewSwap('agents-list');
+}
+
+var mapsAnchor = document.querySelector('#maps-nav-bar');
+mapsAnchor.addEventListener('click', handleMapsAnchorClick);
+function handleMapsAnchorClick(event) {
+  viewSwap('maps-list');
+}
