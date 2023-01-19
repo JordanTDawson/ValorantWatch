@@ -69,7 +69,7 @@ function renderAgentDetails(agentData) {
   divBiography.appendChild(paraBiography);
 
   var divFirstAbility = document.createElement('div');
-  divFirstAbility.setAttribute('class', 'column-half content-margin');
+  divFirstAbility.setAttribute('class', 'column-half content-margin ability-column-padding');
   divRow.appendChild(divFirstAbility);
 
   var rowFirstAbility = document.createElement('div');
@@ -100,7 +100,7 @@ function renderAgentDetails(agentData) {
   colTwoThirdsFirst.appendChild(abilityParagraphQ);
 
   var divSecondAbility = document.createElement('div');
-  divSecondAbility.setAttribute('class', 'column-half content-margin');
+  divSecondAbility.setAttribute('class', 'column-half content-margin ability-column-padding');
   divRow.appendChild(divSecondAbility);
 
   var rowSecondAbility = document.createElement('div');
@@ -131,7 +131,7 @@ function renderAgentDetails(agentData) {
   colTwoThirdsSecond.appendChild(abilityParagraphE);
 
   var divThirdAbility = document.createElement('div');
-  divThirdAbility.setAttribute('class', 'column-half');
+  divThirdAbility.setAttribute('class', 'column-half ability-column-padding');
   divRow.appendChild(divThirdAbility);
 
   var rowThirdAbility = document.createElement('div');
@@ -162,7 +162,7 @@ function renderAgentDetails(agentData) {
   colTwoThirdsThird.appendChild(abilityParagraphC);
 
   var divFourthAbility = document.createElement('div');
-  divFourthAbility.setAttribute('class', 'column-half');
+  divFourthAbility.setAttribute('class', 'column-half ability-column-padding');
   divRow.appendChild(divFourthAbility);
 
   var rowFourthAbility = document.createElement('div');

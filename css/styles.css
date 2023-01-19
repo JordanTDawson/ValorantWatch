@@ -70,3 +70,7 @@ body {
   border-radius: 6px;
   background-color: grey;
 }
+
+.ability-column-padding {
+  padding: 0 16px;
+}
