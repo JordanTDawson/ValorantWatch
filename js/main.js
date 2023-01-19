@@ -1,4 +1,5 @@
 var agentList = document.querySelector('#agent-list');
+var divAgentsList = document.querySelector('.agents-list');
 function getAgentData(agent) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://valorant-api.com/v1/agents');
@@ -14,8 +15,6 @@ function getAgentData(agent) {
 }
 
 getAgentData(agentList);
-
-var divAgentsList = document.querySelector('.agents-list');
 
 function renderAgentDetails(agentData) {
   var divAgentContainer = document.createElement('div');
