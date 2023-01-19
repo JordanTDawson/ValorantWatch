@@ -1,21 +1,23 @@
-// var agentList = document.querySelector('#agent-list');
-// function getAgentData(agent) {
-//   var xhr = new XMLHttpRequest();
-//   xhr.open('GET', 'https://valorant-api.com/v1/agents');
-//   xhr.responseType = 'json';
-//   xhr.addEventListener('load', function () {
-//     console.log(xhr.status);
-//     console.log(xhr.response);
-//     console.log(data.displayName);
-//   });
-//   xhr.send();
-// }
+var agentList = document.querySelector('#agent-list');
+function getAgentData(agent) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/agents');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (var i = 0; i < xhr.response.data.length; i++) {
+      if (xhr.response.data[i].isPlayableCharacter === true) {
+        renderAgentDetails(xhr.response.data[i]);
+      }
+    }
+  });
+  xhr.send();
+}
 
-// getAgentData(agentList);
+getAgentData(agentList);
 
 var divAgentsList = document.querySelector('.agents-list');
 
-function renderAgentList(entry) {
+function renderAgentDetails(agentData) {
   var divAgentContainer = document.createElement('div');
   divAgentContainer.setAttribute('class', 'agent-container container-background');
 
@@ -28,35 +30,42 @@ function renderAgentList(entry) {
   divRow.appendChild(divColumnHalf);
 
   var agentImage = document.createElement('img');
-  agentImage.setAttribute('src', 'images/astra-dummy-data.jpeg');
+  agentImage.setAttribute('src', agentData.bustPortrait);
   divColumnHalf.appendChild(agentImage);
 
   var divAgentName = document.createElement('div');
-  divAgentName.setAttribute('class', 'column-half row wrap space-between');
+  divAgentName.setAttribute('class', 'column-half');
   divRow.appendChild(divAgentName);
 
   var headAgentName = document.createElement('h1');
   headAgentName.setAttribute('class', 'content-margin agents-list-margin');
-  headAgentName.textContent = 'Astra';
+  headAgentName.textContent = 'Agent Name: ' + agentData.displayName;
   divAgentName.appendChild(headAgentName);
 
+  var divAgentRole = document.createElement('div');
+  divAgentName.appendChild(divAgentRole);
+
   var headAgentRole = document.createElement('h1');
-  headAgentRole.setAttribute('class', 'content-margin');
-  headAgentRole.textContent = '//Role: Controller';
+  headAgentRole.setAttribute('class', 'content-margin agents-list-margin');
+  headAgentRole.textContent = '//Role: ' + agentData.role.displayName;
   divAgentName.appendChild(headAgentRole);
 
+  var paraAgentRole = document.createElement('p');
+  paraAgentRole.setAttribute('class', 'agents-list-margin font-size-agent-info');
+  paraAgentRole.textContent = agentData.role.description;
+  divAgentName.appendChild(paraAgentRole);
+
   var divBiography = document.createElement('div');
-  divBiography.setAttribute('class', 'row wrap');
   divAgentName.appendChild(divBiography);
 
-  var headBiography = document.createElement('h2');
-  headBiography.setAttribute('class', 'no-margin agents-list-margin');
+  var headBiography = document.createElement('h1');
+  headBiography.setAttribute('class', ' agents-list-margin');
   headBiography.textContent = '//Biography';
   divBiography.appendChild(headBiography);
 
   var paraBiography = document.createElement('p');
-  paraBiography.setAttribute('class', 'no-margin agents-list-margin');
-  paraBiography.textContent = "Ghanaian Agent Astra harnesses the energies of the cosmos to reshape battlefields to her whim. With full command of her astral form and a talent for deep strategic foresight, she's always eons ahead of her enemy's next move.";
+  paraBiography.setAttribute('class', 'no-margin agents-list-margin font-size-agent-info');
+  paraBiography.textContent = agentData.description;
   divBiography.appendChild(paraBiography);
 
   var divFirstAbility = document.createElement('div');
@@ -72,26 +81,26 @@ function renderAgentList(entry) {
   rowFirstAbility.appendChild(colThirdFirst);
 
   var imageFirstAbility = document.createElement('img');
-  imageFirstAbility.setAttribute('src', 'images/valorant-logo-ajax-project.png');
-  imageFirstAbility.setAttribute('class', 'nav-bar-logo');
+  imageFirstAbility.setAttribute('src', agentData.abilities[0].displayIcon);
+  imageFirstAbility.setAttribute('class', 'nav-bar-logo ability-image-background');
   colThirdFirst.appendChild(imageFirstAbility);
 
   var colTwoThirdsFirst = document.createElement('div');
   colTwoThirdsFirst.setAttribute('class', 'col-two-thirds');
   rowFirstAbility.appendChild(colTwoThirdsFirst);
 
-  var abilityQ = document.createElement('h4');
+  var abilityQ = document.createElement('h2');
   abilityQ.setAttribute('class', 'agents-list-margin');
-  abilityQ.textContent = 'Q - NOVA PULSE';
+  abilityQ.textContent = 'Q - ' + agentData.abilities[0].displayName;
   colTwoThirdsFirst.appendChild(abilityQ);
 
   var abilityParagraphQ = document.createElement('p');
-  abilityParagraphQ.setAttribute('class', 'agents-list-margin');
-  abilityParagraphQ.textContent = 'Place Stars in Astral Form (X) ACTIVATE a Star to detonate a Nova Pulse. The Nova Pulse charges briefly then strikes, concussing all players in its area.';
+  abilityParagraphQ.setAttribute('class', 'agents-list-margin font-size-agent-ability');
+  abilityParagraphQ.textContent = agentData.abilities[0].description;
   colTwoThirdsFirst.appendChild(abilityParagraphQ);
 
   var divSecondAbility = document.createElement('div');
-  divSecondAbility.setAttribute('class', 'column-half');
+  divSecondAbility.setAttribute('class', 'column-half content-margin');
   divRow.appendChild(divSecondAbility);
 
   var rowSecondAbility = document.createElement('div');
@@ -103,22 +112,22 @@ function renderAgentList(entry) {
   rowSecondAbility.appendChild(colThirdSecond);
 
   var imageSecondAbility = document.createElement('img');
-  imageSecondAbility.setAttribute('src', 'images/valorant-logo-ajax-project.png');
-  imageSecondAbility.setAttribute('class', 'nav-bar-logo');
+  imageSecondAbility.setAttribute('src', agentData.abilities[1].displayIcon);
+  imageSecondAbility.setAttribute('class', 'nav-bar-logo ability-image-background');
   colThirdSecond.appendChild(imageSecondAbility);
 
   var colTwoThirdsSecond = document.createElement('div');
   colTwoThirdsSecond.setAttribute('class', 'col-two-thirds');
   rowSecondAbility.appendChild(colTwoThirdsSecond);
 
-  var abilityE = document.createElement('h4');
+  var abilityE = document.createElement('h2');
   abilityE.setAttribute('class', 'agents-list-margin');
-  abilityE.textContent = 'E - NEBULA';
+  abilityE.textContent = 'E - ' + agentData.abilities[1].displayName;
   colTwoThirdsSecond.appendChild(abilityE);
 
   var abilityParagraphE = document.createElement('p');
-  abilityParagraphE.setAttribute('class', 'agents-list-margin');
-  abilityParagraphE.textContent = 'Place Stars in Astral Form (X) ACTIVATE a Star to transform it into a Nebula (smoke). Use (F) on a Star to Dissipate it, returning the star to be placed in a new location after a delay. Dissipate briefly forms a fake Nebula at the Star’s location before returning.';
+  abilityParagraphE.setAttribute('class', 'agents-list-margin font-size-agent-ability');
+  abilityParagraphE.textContent = agentData.abilities[1].description;
   colTwoThirdsSecond.appendChild(abilityParagraphE);
 
   var divThirdAbility = document.createElement('div');
@@ -134,22 +143,22 @@ function renderAgentList(entry) {
   rowThirdAbility.appendChild(colThirdThird);
 
   var imageThirdAbility = document.createElement('img');
-  imageThirdAbility.setAttribute('src', 'images/valorant-logo-ajax-project.png');
-  imageThirdAbility.setAttribute('class', 'nav-bar-logo');
+  imageThirdAbility.setAttribute('src', agentData.abilities[2].displayIcon);
+  imageThirdAbility.setAttribute('class', 'nav-bar-logo ability-image-background');
   colThirdThird.appendChild(imageThirdAbility);
 
   var colTwoThirdsThird = document.createElement('div');
   colTwoThirdsThird.setAttribute('class', 'col-two-thirds');
   rowThirdAbility.appendChild(colTwoThirdsThird);
 
-  var abilityC = document.createElement('h4');
+  var abilityC = document.createElement('h2');
   abilityC.setAttribute('class', 'agents-list-margin');
-  abilityC.textContent = 'C - GRAVITY WELL';
+  abilityC.textContent = 'C - ' + agentData.abilities[2].displayName;
   colTwoThirdsThird.appendChild(abilityC);
 
   var abilityParagraphC = document.createElement('p');
-  abilityParagraphC.setAttribute('class', 'agents-list-margin');
-  abilityParagraphC.textContent = 'Place Stars in Astral Form (X) ACTIVATE a Star to form a Gravity Well. Players in the area are pulled toward the center before it explodes, making all players still trapped inside fragile.';
+  abilityParagraphC.setAttribute('class', 'agents-list-margin font-size-agent-ability');
+  abilityParagraphC.textContent = agentData.abilities[2].description;
   colTwoThirdsThird.appendChild(abilityParagraphC);
 
   var divFourthAbility = document.createElement('div');
@@ -165,27 +174,25 @@ function renderAgentList(entry) {
   rowFourthAbility.appendChild(colThirdFourth);
 
   var imageFourthAbility = document.createElement('img');
-  imageFourthAbility.setAttribute('src', 'images/valorant-logo-ajax-project.png');
-  imageFourthAbility.setAttribute('class', 'nav-bar-logo');
+  imageFourthAbility.setAttribute('src', agentData.abilities[3].displayIcon);
+  imageFourthAbility.setAttribute('class', 'nav-bar-logo ability-image-background');
   colThirdFourth.appendChild(imageFourthAbility);
 
   var colTwoThirdsFourth = document.createElement('div');
   colTwoThirdsFourth.setAttribute('class', 'col-two-thirds');
   rowFourthAbility.appendChild(colTwoThirdsFourth);
 
-  var abilityX = document.createElement('h4');
+  var abilityX = document.createElement('h2');
   abilityX.setAttribute('class', 'agents-list-margin');
-  abilityX.textContent = 'X - ASTRAL FORM / COSMIC DIVIDE';
+  abilityX.textContent = 'X - ' + agentData.abilities[3].displayName;
   colTwoThirdsFourth.appendChild(abilityX);
 
   var abilityParagraphX = document.createElement('p');
-  abilityParagraphX.setAttribute('class', 'agents-list-margin');
-  abilityParagraphX.textContent = 'ACTIVATE (X) to enter Astral Form where you can place Stars with PRIMARY FIRE. Stars can be reactivated later, transforming them into a Nova Pulse, Nebula, or Gravity Well. When Cosmic Divide is charged, use SECONDARY FIRE in Astral Form to begin aiming it, then PRIMARY FIRE to select two locations. An infinite Cosmic Divide connects the two points you select. Cosmic Divide blocks bullets and heavily dampens audio.';
+  abilityParagraphX.setAttribute('class', 'agents-list-margin font-size-agent-ability');
+  abilityParagraphX.textContent = agentData.abilities[3].description;
   colTwoThirdsFourth.appendChild(abilityParagraphX);
 
   divAgentsList.appendChild(divAgentContainer);
 
   return divAgentsList;
 }
-
-renderAgentList();

@@ -3,6 +3,11 @@ img {
   width: 100%;
 }
 
+body {
+  font-family: "Sofia Sans", sans-serif;
+  letter-spacing: 1.5px;
+}
+
 .nav-bar-logo {
   width: 60px;
   height: 61px;
@@ -51,4 +56,17 @@ img {
 
 .agents-list-margin {
   margin-left: 12px;
+}
+
+.font-size-agent-info {
+  font-size: 24px;
+}
+
+.font-size-agent-ability {
+  font-size: 20px;
+}
+
+.ability-image-background {
+  border-radius: 6px;
+  background-color: grey;
 }
