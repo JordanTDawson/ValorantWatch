@@ -1,0 +1,39 @@
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.agent-container {
+  max-width: 1400px;
+  margin: 20px auto 0;
+}
+
+.row {
+  display: flex;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-half {
+  width: 100%;
+}
+
+.col-two-thirds {
+  flex-basis: calc(100% / (2 / 3));
+}
+
+@media only screen and (min-width: 768px) {
+  .container {
+    max-width: 1600px;
+  }
+
+  .column-half {
+    width: 50%;
+  }
+}

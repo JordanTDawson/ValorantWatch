@@ -1,0 +1,76 @@
+img {
+  display: block;
+  width: 100%;
+}
+
+body {
+  font-family: "Sofia Sans", sans-serif;
+  letter-spacing: 1.5px;
+}
+
+.nav-bar-logo {
+  width: 60px;
+  height: 61px;
+}
+
+.entries-margin {
+  margin: 0 16px;
+}
+
+.entry-background {
+  background-color: #0f1721;
+}
+
+.header-background {
+  background-color: #f64e4f;
+}
+
+.anchor-entries {
+  text-decoration: none;
+}
+
+.header-text-color {
+  color: #0f1721;
+}
+
+.nav-bar-margin {
+  margin: 16px 0 0;
+}
+
+.content-margin {
+  margin: 14px 0 0;
+}
+
+.no-margin {
+  margin: 0;
+}
+
+.container-background {
+  background-color: white;
+  border-radius: 4px;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.agents-list-margin {
+  margin-left: 12px;
+}
+
+.font-size-agent-info {
+  font-size: 24px;
+}
+
+.font-size-agent-ability {
+  font-size: 20px;
+}
+
+.ability-image-background {
+  border-radius: 6px;
+  background-color: grey;
+}
+
+.ability-column-padding {
+  padding: 0 16px;
+}
