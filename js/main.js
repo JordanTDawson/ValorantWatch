@@ -206,6 +206,16 @@ function renderAgentDetails(agentData) {
   abilityParagraphX.textContent = agentData.abilities[3].description;
   colTwoThirdsFourth.appendChild(abilityParagraphX);
 
+  var divModalButton = document.createElement('div');
+  divModalButton.setAttribute('class', 'column-full display-flex-right');
+  divRow.appendChild(divModalButton);
+
+  var anchorModal = document.createElement('button');
+  anchorModal.setAttribute('class', 'modal-button');
+  anchorModal.setAttribute('type', 'submit');
+  anchorModal.textContent = 'Add Agent';
+  divModalButton.appendChild(anchorModal);
+
   divAgentsList.appendChild(divAgentContainer);
 
   return divAgentsList;
