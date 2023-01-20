@@ -1,4 +1,5 @@
-var agentList = document.querySelector('#agent-list');
+var divAgentsList = document.querySelector('.agents-list');
+var divMapsList = document.querySelector('.maps-list');
 function getAgentData(agent) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://valorant-api.com/v1/agents');
@@ -13,9 +14,22 @@ function getAgentData(agent) {
   xhr.send();
 }
 
-getAgentData(agentList);
+function getMapData(map) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/maps');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (var i = 0; i < xhr.response.data.length; i++) {
+      if (xhr.response.data[i].displayName !== 'The Range') {
+        renderMapDetails(xhr.response.data[i]);
+      }
+    }
+  });
+  xhr.send();
+}
 
-var divAgentsList = document.querySelector('.agents-list');
+getAgentData();
+getMapData();
 
 function renderAgentDetails(agentData) {
   var divAgentContainer = document.createElement('div');
@@ -195,4 +209,87 @@ function renderAgentDetails(agentData) {
   divAgentsList.appendChild(divAgentContainer);
 
   return divAgentsList;
+}
+
+function renderMapDetails(mapData) {
+  var divMapContainer = document.createElement('div');
+  divMapContainer.setAttribute('class', 'maps-container container-background');
+
+  var divRow = document.createElement('div');
+  divRow.setAttribute('class', 'row wrap');
+  divMapContainer.appendChild(divRow);
+
+  var columnHalfOne = document.createElement('div');
+  columnHalfOne.setAttribute('class', 'column-half');
+  divRow.appendChild(columnHalfOne);
+
+  var mapImage = document.createElement('img');
+  mapImage.setAttribute('src', mapData.splash);
+  columnHalfOne.appendChild(mapImage);
+
+  var columnHalfTwo = document.createElement('div');
+  columnHalfTwo.setAttribute('class', 'column-half');
+  divRow.appendChild(columnHalfTwo);
+
+  var favoriteAgentsRow = document.createElement('div');
+  favoriteAgentsRow.setAttribute('class', 'row');
+  columnHalfTwo.appendChild(favoriteAgentsRow);
+
+  var calloutsColumn = document.createElement('div');
+  calloutsColumn.setAttribute('class', 'column-full');
+  divRow.appendChild(calloutsColumn);
+
+  var mapName = document.createElement('h1');
+  mapName.setAttribute('class', 'agents-list-margin');
+  mapName.textContent = 'Map Name: ' + mapData.displayName;
+  calloutsColumn.appendChild(mapName);
+
+  var calloutsHead = document.createElement('h1');
+  calloutsHead.setAttribute('class', 'agents-list-margin');
+  calloutsHead.textContent = 'All Map Callouts: ';
+  calloutsColumn.appendChild(calloutsHead);
+
+  var calloutsPara = document.createElement('p');
+  calloutsPara.setAttribute('class', 'agents-list-margin');
+  var calloutsArray = [];
+  for (var i = 0; i < mapData.callouts.length; i++) {
+    calloutsArray.push(mapData.callouts[i].regionName);
+  }
+  var allCallouts = calloutsArray.join(', ');
+  calloutsPara.textContent = allCallouts;
+  calloutsColumn.appendChild(calloutsPara);
+
+  divMapsList.appendChild(divMapContainer);
+
+  return divMapContainer;
+}
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  viewSwap(data.view);
+});
+
+function viewSwap(viewName) {
+  var divMapsList = document.querySelector('.maps-list');
+  if (viewName === 'maps-list') {
+    divAgentsList.classList.add('hidden');
+    divMapsList.classList.remove('hidden');
+    data.view = viewName;
+  }
+  if (viewName === 'agents-list') {
+    divAgentsList.classList.remove('hidden');
+    divMapsList.classList.add('hidden');
+    data.view = viewName;
+  }
+}
+
+var agentsAnchor = document.querySelector('#agents-nav-bar');
+agentsAnchor.addEventListener('click', handleAgentsAnchorClick);
+function handleAgentsAnchorClick(event) {
+  viewSwap('agents-list');
+}
+
+var mapsAnchor = document.querySelector('#maps-nav-bar');
+mapsAnchor.addEventListener('click', handleMapsAnchorClick);
+function handleMapsAnchorClick(event) {
+  viewSwap('maps-list');
 }
