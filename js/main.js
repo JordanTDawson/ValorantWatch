@@ -1,5 +1,5 @@
-var agentList = document.querySelector('#agent-list');
 var divAgentsList = document.querySelector('.agents-list');
+var divMapsList = document.querySelector('.maps-list');
 function getAgentData(agent) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://valorant-api.com/v1/agents');
@@ -14,7 +14,20 @@ function getAgentData(agent) {
   xhr.send();
 }
 
-getAgentData(agentList);
+// eslint-disable-next-line no-unused-vars
+function getMapData(map) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://valorant-api.com/v1/maps');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    for (var i = 0; i < xhr.response.data.length; i++) {
+      renderMapDetails(xhr.response.data[i]);
+    }
+  });
+}
+
+getAgentData();
+renderMapDetails();
 
 function renderAgentDetails(agentData) {
   var divAgentContainer = document.createElement('div');
@@ -194,6 +207,54 @@ function renderAgentDetails(agentData) {
   divAgentsList.appendChild(divAgentContainer);
 
   return divAgentsList;
+}
+
+function renderMapDetails(mapData) {
+  var divMapContainer = document.createElement('div');
+  divMapContainer.setAttribute('class', 'maps-container container-background');
+
+  var divRow = document.createElement('div');
+  divRow.setAttribute('class', 'row wrap');
+  divMapContainer.appendChild(divRow);
+
+  var columnHalfOne = document.createElement('div');
+  columnHalfOne.setAttribute('class', 'column-half');
+  divRow.appendChild(columnHalfOne);
+
+  var mapImage = document.createElement('img');
+  mapImage.setAttribute('src', 'images/astra-dummy-data.jpeg');
+  columnHalfOne.appendChild(mapImage);
+
+  var columnHalfTwo = document.createElement('div');
+  columnHalfTwo.setAttribute('class', 'column-half');
+  divRow.appendChild(columnHalfTwo);
+
+  var headFavoriteAgents = document.createElement('h1');
+  headFavoriteAgents.setAttribute('class', 'agents-list-margin');
+  headFavoriteAgents.textContent = 'Favorite Agents:';
+  columnHalfTwo.appendChild(headFavoriteAgents);
+
+  var favoriteAgentsRow = document.createElement('div');
+  favoriteAgentsRow.setAttribute('class', 'row');
+  columnHalfTwo.appendChild(favoriteAgentsRow);
+
+  var calloutsColumn = document.createElement('div');
+  calloutsColumn.setAttribute('class', 'column-full');
+  divRow.appendChild(calloutsColumn);
+
+  var calloutsHead = document.createElement('h1');
+  calloutsHead.setAttribute('class', 'agents-list-margin');
+  calloutsHead.textContent = 'All Map Callouts: ';
+  calloutsColumn.appendChild(calloutsHead);
+
+  var calloutsPara = document.createElement('p');
+  calloutsPara.setAttribute('class', 'agents-list-margin');
+  calloutsPara.textContent = 'Some placeholder text...';
+  calloutsColumn.appendChild(calloutsPara);
+
+  divMapsList.appendChild(divMapContainer);
+
+  return divMapContainer;
 }
 
 function viewSwap(viewName) {
