@@ -14,20 +14,22 @@ function getAgentData(agent) {
   xhr.send();
 }
 
-// eslint-disable-next-line no-unused-vars
 function getMapData(map) {
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://valorant-api.com/v1/maps');
   xhr.responseType = 'json';
   xhr.addEventListener('load', function () {
     for (var i = 0; i < xhr.response.data.length; i++) {
-      renderMapDetails(xhr.response.data[i]);
+      if (xhr.response.data[i].displayName !== 'The Range') {
+        renderMapDetails(xhr.response.data[i]);
+      }
     }
   });
+  xhr.send();
 }
 
 getAgentData();
-renderMapDetails();
+getMapData();
 
 function renderAgentDetails(agentData) {
   var divAgentContainer = document.createElement('div');
@@ -222,17 +224,12 @@ function renderMapDetails(mapData) {
   divRow.appendChild(columnHalfOne);
 
   var mapImage = document.createElement('img');
-  mapImage.setAttribute('src', 'images/astra-dummy-data.jpeg');
+  mapImage.setAttribute('src', mapData.splash);
   columnHalfOne.appendChild(mapImage);
 
   var columnHalfTwo = document.createElement('div');
   columnHalfTwo.setAttribute('class', 'column-half');
   divRow.appendChild(columnHalfTwo);
-
-  var headFavoriteAgents = document.createElement('h1');
-  headFavoriteAgents.setAttribute('class', 'agents-list-margin');
-  headFavoriteAgents.textContent = 'Favorite Agents:';
-  columnHalfTwo.appendChild(headFavoriteAgents);
 
   var favoriteAgentsRow = document.createElement('div');
   favoriteAgentsRow.setAttribute('class', 'row');
@@ -242,6 +239,11 @@ function renderMapDetails(mapData) {
   calloutsColumn.setAttribute('class', 'column-full');
   divRow.appendChild(calloutsColumn);
 
+  var mapName = document.createElement('h1');
+  mapName.setAttribute('class', 'agents-list-margin');
+  mapName.textContent = 'Map Name: ' + mapData.displayName;
+  calloutsColumn.appendChild(mapName);
+
   var calloutsHead = document.createElement('h1');
   calloutsHead.setAttribute('class', 'agents-list-margin');
   calloutsHead.textContent = 'All Map Callouts: ';
@@ -249,13 +251,22 @@ function renderMapDetails(mapData) {
 
   var calloutsPara = document.createElement('p');
   calloutsPara.setAttribute('class', 'agents-list-margin');
-  calloutsPara.textContent = 'Some placeholder text...';
+  var calloutsArray = [];
+  for (var i = 0; i < mapData.callouts.length; i++) {
+    calloutsArray.push(mapData.callouts[i].regionName);
+  }
+  var allCallouts = calloutsArray.join(', ');
+  calloutsPara.textContent = allCallouts;
   calloutsColumn.appendChild(calloutsPara);
 
   divMapsList.appendChild(divMapContainer);
 
   return divMapContainer;
 }
+
+document.addEventListener('DOMContentLoaded', function (event) {
+  viewSwap(data.view);
+});
 
 function viewSwap(viewName) {
   var divMapsList = document.querySelector('.maps-list');
