@@ -91,3 +91,30 @@ body {
   display: flex;
   justify-content: end;
 }
+
+.modal-container {
+  background-color: rgb(0 0 0 / 30%);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal-container.show {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.modal {
+  background-color: white;
+  width: 400px;
+  border-radius: 4px;
+  max-width: 100%;
+  text-align: center;
+}

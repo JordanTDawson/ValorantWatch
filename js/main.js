@@ -210,11 +210,12 @@ function renderAgentDetails(agentData) {
   divModalButton.setAttribute('class', 'column-full display-flex-right');
   divRow.appendChild(divModalButton);
 
-  var anchorModal = document.createElement('button');
-  anchorModal.setAttribute('class', 'modal-button');
-  anchorModal.setAttribute('type', 'submit');
-  anchorModal.textContent = 'Add Agent';
-  divModalButton.appendChild(anchorModal);
+  var buttonModal = document.createElement('button');
+  buttonModal.setAttribute('class', 'modal-button');
+  buttonModal.setAttribute('type', 'submit');
+  buttonModal.setAttribute('id', 'modal-button');
+  buttonModal.textContent = 'Add Agent';
+  divModalButton.appendChild(buttonModal);
 
   divAgentsList.appendChild(divAgentContainer);
 
@@ -277,6 +278,10 @@ function renderMapDetails(mapData) {
 document.addEventListener('DOMContentLoaded', function (event) {
   viewSwap(data.view);
 });
+
+// var modalContainer = document.querySelector('#closed-container');
+// var cancelButton = document.querySelector('#cancel-button');
+// var confirmButton = document.querySelector('#confirm');
 
 function viewSwap(viewName) {
   var divMapsList = document.querySelector('.maps-list');
