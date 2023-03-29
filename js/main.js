@@ -1,28 +1,46 @@
 var divAgentsList = document.querySelector('.agents-list');
 var divMapsList = document.querySelector('.maps-list');
+var loader = document.querySelector('.loader');
+
 function getAgentData(agent) {
+  loader.getElementsByClassName.display = 'block';
+
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://valorant-api.com/v1/agents');
+  xhr.open('GET', 'https://valorant-api.com/v1/agent');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    for (var i = 0; i < xhr.response.data.length; i++) {
-      if (xhr.response.data[i].isPlayableCharacter === true) {
-        renderAgentDetails(xhr.response.data[i]);
+
+  xhr.addEventListener('load', () => {
+    if (xhr.status === 200) {
+      loader.style.display = 'none';
+      for (var i = 0; i < xhr.response.data.length; i++) {
+        if (xhr.response.data[i].isPlayableCharacter === true) {
+          renderAgentDetails(xhr.response.data[i]);
+        }
       }
+    } else {
+      divAgentsList.innerHTML = '<h2>Failed to load data from the APi</h2>';
     }
   });
   xhr.send();
 }
 
 function getMapData(map) {
+  loader.style.display = 'block';
+
   var xhr = new XMLHttpRequest();
   xhr.open('GET', 'https://valorant-api.com/v1/maps');
   xhr.responseType = 'json';
-  xhr.addEventListener('load', function () {
-    for (var i = 0; i < xhr.response.data.length; i++) {
-      if (xhr.response.data[i].displayName !== 'The Range') {
-        renderMapDetails(xhr.response.data[i]);
+
+  xhr.addEventListener('load', () => {
+    if (xhr.status === 200) {
+      loader.style.display = 'none';
+      for (var i = 0; i < xhr.response.data.length; i++) {
+        if (xhr.response.data[i].displayName !== 'The Range') {
+          renderMapDetails(xhr.response.data[i]);
+        }
       }
+    } else {
+      divMapsList.innerHTML = '<h2>Failed to load data from API</h2>';
     }
   });
   xhr.send();
