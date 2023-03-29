@@ -6,7 +6,7 @@ function getAgentData(agent) {
   loader.getElementsByClassName.display = 'block';
 
   var xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://valorant-api.com/v1/agent');
+  xhr.open('GET', 'https://valorant-api.com/v1/agents');
   xhr.responseType = 'json';
 
   xhr.addEventListener('load', () => {
