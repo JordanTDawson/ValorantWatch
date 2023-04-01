@@ -1,6 +1,6 @@
 # ValorantWatch
 ## Overview
-This project is a dynamic HTML, CSS, and JavaScript solo AJAX project using the unofficial Valorant API to display details about playable agents and maps.
+This project is a dynamic HTML, CSS, and JavaScript solo AJAX project using the [unofficial Valorant API](https://valorant-api.com/) to display details about playable agents and maps.
 ## Demo
 [Link to demo (if applicable)]
 ## Features
