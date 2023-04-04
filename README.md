@@ -36,4 +36,4 @@ Right click on the index.html file and "Open with LiveReload Server.
 ## Contact Jordan Dawson
 #### Email - jtdawson@icloud.com
 #### LinkedIn - https://www.linkedin.com/in/jordantdawson/
-#### Project Link: https://github.com/JordanTDawson/ValorantWatch
+#### Project Link: https://jordantdawson.github.io/ValorantWatch/
