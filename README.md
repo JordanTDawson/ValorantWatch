@@ -2,7 +2,7 @@
 ## Overview
 This project is a dynamic HTML, CSS, and JavaScript solo AJAX project using the [unofficial Valorant API](https://valorant-api.com/) to display details about playable agents and maps.
 ## Demo
-[Link to demo (if applicable)]
+[https://jordantdawson.github.io/ValorantWatch/]
 ## Features
 * Using HTML 5, the website's layout is organized to enable seamless view swapping and provide a more cohesive user experience.
 * Additionally, the website is optimized for various viewports, ensuring proper functionality across different devices.
